@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .vote-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .vote-item {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            accent-color: #04AA6D;
+        }
+        input[type="submit"] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #037f53;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <div class="vote-container">
+            {% for name in names %}
+                <div class="vote-item">
+                    <label>{{ name }}:</label>
+                    <label><input type="radio" name="{{ name }}" value="yes"> Yes</label>
+                    <label><input type="radio" name="{{ name }}" value="no" checked> No</label>
+                </div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Save Votes">
+    </form>
+</body>
+</html>
