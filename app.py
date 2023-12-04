@@ -49,6 +49,7 @@ def calculate_multipliers():
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -56,8 +57,8 @@ def login():
             session['username'] = username  # Log in the user
             return redirect(url_for('vote'))
         else:
-            return 'Invalid username or password', 403
-    return render_template('login.html')
+            error = 'Invalid username or password'
+    return render_template('login.html', error=error)
 
 @app.route('/vote', methods=['GET', 'POST'])
 def vote():
